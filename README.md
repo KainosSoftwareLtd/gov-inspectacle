@@ -28,6 +28,23 @@ Timeout for the DW Jersey client is high thanks to network latency. You might ge
 
 Compiles and runs, make sure you have the above settings configured. Don't commit your Private Key to a public repo ;)
 
+Defaults to running on 9420.
+
+```
+    GET     /status (com.kainos.inspectacle.resources.StatusResource)
+    Just tells you if it is running or not.
+```
+
+```
+    GET     /projects (com.kainos.inspectacle.resources.ProjectsResource)
+    Returns JSON list of Project Summaries
+```
+
+```
+    GET     /projects/csv (com.kainos.inspectacle.resources.ProjectsResource)
+    Returns CSV list of project summaries. So good for managing. Such Manage. So Spreadsheet. Very Jockey.
+```
+
 
 ```
 ./runTests
