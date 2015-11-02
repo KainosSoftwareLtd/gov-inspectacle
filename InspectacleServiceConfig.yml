@@ -1,0 +1,34 @@
+server:
+  type: simple
+  applicationContextPath: /
+  adminContextPath: /admin
+  connector:
+    type: http
+    port: 9420
+
+logging:
+  level: INFO
+  loggers:
+    "com.kainos": DEBUG
+
+applicationConfig:
+  applicationVersionFilePath:
+
+jerseyClient:
+  timeout: 10000ms
+  connectionTimeout: 10000ms
+  timeToLive: 1h
+  cookiesEnabled: false
+  maxConnections: 1024
+  maxConnectionsPerRoute: 1024
+  keepAlive: 0ms
+  retries: 0
+  minThreads: 1
+  maxThreads: 128
+  workQueueSize: 8
+  gzipEnabled: true
+  gzipEnabledForRequests: true
+  chunkedEncodingEnabled: true
+
+privateKey: YOUR_PRIVATE_KEY
+url: ROOT_URL_TO_GITLAB

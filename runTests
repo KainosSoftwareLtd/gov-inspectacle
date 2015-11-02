@@ -1,0 +1,2 @@
+./sbt "project inspectacle-service" clean test
+
