@@ -21,12 +21,17 @@ url: ROOT_URL_TO_GITLAB
 Timeout for the DW Jersey client is high thanks to network latency. You might get away with shorter.
 
 #### Running
-``` ./go
+
+```
+./go
+```
 
 Compiles and runs, make sure you have the above settings configured. Don't commit your Private Key to a public repo ;)
 
 
-``` ./runTests
+```
+./runTests
+```
 
 Runs all the tests. There are no tests. I am a bad person. Excessive logging is my crutch. (RH)
 
