@@ -23,7 +23,7 @@ Timeout for the DW Jersey client is high thanks to network latency. You might ge
 #### Running
 
 ```
-./go
+./gradlew inspectacle-service:run
 ```
 
 Compiles and runs, make sure you have the above settings configured. Don't commit your Private Key to a public repo ;)
