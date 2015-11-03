@@ -1,8 +1,9 @@
 package com.kainos.inspectacle.models.inspectacle;
 
+import com.kainos.inspectacle.services.checks.Checks;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kainos.inspectacle.services.checks.Checks;
 import org.gitlab.api.models.GitlabProject;
 
 import java.util.Map;

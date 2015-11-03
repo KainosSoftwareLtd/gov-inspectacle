@@ -1,4 +1,4 @@
-package com.kainos.inspectacle.services.OutputFormatter;
+package com.kainos.inspectacle.services.outputformatter;
 
 import com.kainos.inspectacle.models.inspectacle.ProjectSummary;
 
