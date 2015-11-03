@@ -8,6 +8,8 @@
           `-==-'     `-==-'
     INSPECTACLE - GITLAB REPO POLICE
 
+[![Build Status](https://travis-ci.org/KainosSoftwareLtd/gov-inspectacle.svg?branch=master)](https://travis-ci.org/KainosSoftwareLtd/gov-inspectacle)
+
 #### Dropwizard Wrapper around Gitlab API
 This heroic application is designed to watch over your Gitlab repos, probing them for README files, and displaying whether or not they are active. Plug this into your build radiator, and expose those repos who fail to display common decency.
 
@@ -15,10 +17,7 @@ This heroic application is designed to watch over your Gitlab repos, probing the
 Replace the following things in the InspectacleServiceConfig.yml configuration file:
 
 privateKey: YOUR_PRIVATE_KEY
-
 url: ROOT_URL_TO_GITLAB
-
-Timeout for the DW Jersey client is high thanks to network latency. You might get away with shorter.
 
 #### Running
 
@@ -44,11 +43,3 @@ Defaults to running on 9420.
     GET     /projects/csv (com.kainos.inspectacle.resources.ProjectsResource)
     Returns CSV list of project summaries. So good for managing. Such Manage. So Spreadsheet. Very Jockey.
 ```
-
-
-```
-./runTests
-```
-
-Runs all the tests. There are no tests. I am a bad person. Excessive logging is my crutch. (RH)
-
