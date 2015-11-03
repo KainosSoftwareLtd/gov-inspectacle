@@ -3,14 +3,21 @@ package com.kainos.inspectacle;
 import com.kainos.inspectacle.config.InspectacleServiceConfiguration;
 import com.kainos.inspectacle.health.InspectacleHealthcheck;
 import com.kainos.inspectacle.resources.ProjectsResource;
-import com.kainos.inspectacle.services.ProjectSummariser;
+import com.kainos.inspectacle.resources.StatusResource;
+import com.kainos.inspectacle.services.Checker;
+import com.kainos.inspectacle.services.CheckerImpl;
+import com.kainos.inspectacle.services.OutputFormatter.CsvOutputFormatter;
+import com.kainos.inspectacle.services.ProjectSummariserImpl;
+import com.kainos.inspectacle.services.checks.Check;
+import com.kainos.inspectacle.services.checks.Checks;
+import com.kainos.inspectacle.services.checks.ReadmeCheck;
 import io.dropwizard.Application;
-import io.dropwizard.client.JerseyClientBuilder;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
-import com.kainos.inspectacle.resources.StatusResource;
+import org.gitlab.api.GitlabAPI;
 
-import javax.ws.rs.client.Client;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class InspectacleApplication extends Application<InspectacleServiceConfiguration> {
@@ -27,9 +34,15 @@ public class InspectacleApplication extends Application<InspectacleServiceConfig
 
     @Override
     public void run(InspectacleServiceConfiguration configuration, Environment environment) throws Exception {
-        final Client client = new JerseyClientBuilder(environment).using(configuration.getJerseyClientConfiguration()).build(getName());
-        environment.jersey().register(new ProjectsResource(new ProjectSummariser(client, configuration.getPrivateKey(),configuration.getURL())));
-        environment.jersey().register(new StatusResource(getName()));
+        GitlabAPI gitLabAPI = GitlabAPI.connect(configuration.getURL(), configuration.getPrivateKey());
+
+        Map<Checks, Check> checks = new HashMap<>();
+        checks.put(Checks.README, new ReadmeCheck(gitLabAPI));
+
+        Checker checker = new CheckerImpl(checks);
+
+        environment.jersey().register(new ProjectsResource(new ProjectSummariserImpl(gitLabAPI, checker), new CsvOutputFormatter()));
+        environment.jersey().register(new StatusResource());
         environment.healthChecks().register(getName(), new InspectacleHealthcheck());
     }
 

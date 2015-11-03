@@ -52,5 +52,3 @@ Defaults to running on 9420.
 
 Runs all the tests. There are no tests. I am a bad person. Excessive logging is my crutch. (RH)
 
-#### Disclaimer
-Yes, using the headers returned in the requests is a better way to do paging, instead of checking for null response (you'll see what I mean) but in my defence, i built this against an older version of Gitlab that did not include this. I swear I will fix it.

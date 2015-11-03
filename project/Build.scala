@@ -7,7 +7,8 @@ object ApplicationBuild extends Build {
 
   lazy val serviceDependencies = Seq(
     "io.dropwizard" % "dropwizard-core" % "0.8.2",
-    "io.dropwizard" % "dropwizard-client" % "0.8.4"
+    "io.dropwizard" % "dropwizard-client" % "0.8.4",
+    "org.gitlab" % "java-gitlab-api" % "1.1.9"
   )
 
   lazy val testDependencies = Seq (
