@@ -1,0 +1,47 @@
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+// UTF-8 should be standard by now. So use it!
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+// Add Gradle Shadow Plugin
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.2'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+compileJava {
+    sourceCompatibility = '1.8'
+}
+
+dependencies {
+    def dropwizardVersion = '0.8.2'
+    def gitLabApiVersion = '1.1.9'
+    def dropwizardJava8ModulesVersion = '0.8.0-2'
+
+    compile "io.dropwizard:dropwizard-core:$dropwizardVersion"
+    compile "org.gitlab:java-gitlab-api:$gitLabApiVersion"
+    compile "io.dropwizard.modules:dropwizard-java8:$dropwizardJava8ModulesVersion"
+}
+
+mainClassName = 'com.kainos.inspectacle.InspectacleApplication'
+
+// Configure the run task to start the Dropwizard service
+run {
+    args 'server', './InspectacleServiceConfig.yml'
+}
+
+shadowJar {
+    mergeServiceFiles()
+}
