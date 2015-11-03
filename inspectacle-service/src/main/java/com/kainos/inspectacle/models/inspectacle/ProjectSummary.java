@@ -2,13 +2,23 @@ package com.kainos.inspectacle.models.inspectacle;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.kainos.inspectacle.services.checks.Checks;
+import org.gitlab.api.models.GitlabProject;
+
+import java.util.Map;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ProjectSummary {
+
+    @JsonProperty("id")
     private Integer id;
+    @JsonProperty("name")
     private String name;
 
+    @JsonProperty("description")
     private String description;
+
+    @JsonProperty("path")
     private String path;
 
     @JsonProperty("path_with_namespace")
@@ -20,63 +30,59 @@ public class ProjectSummary {
     @JsonProperty("default_branch")
     private String defaultBranch;
 
-    private boolean containsReadMe;
+    private GitlabProject gitLabProject;
+    private Map<Checks, Boolean> checkResults;
+
+    public ProjectSummary(GitlabProject project) {
+        this.setFromGitlabProject(project);
+    }
+
+    private void setFromGitlabProject(GitlabProject project) {
+        this.id = project.getId();
+        this.name = project.getName();
+        this.description = project.getDescription();
+        this.path = project.getPath();
+        this.pathWithNamespace = project.getPathWithNamespace();
+        this.archived = project.isArchived();
+        this.defaultBranch = project.getDefaultBranch();
+
+        this.gitLabProject = project;
+    }
 
     public Integer getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getDescription() {
         return description;
     }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
 
     public String getPathWithNamespace() {
         return pathWithNamespace;
     }
 
-    public void setPathWithNamespace(String pathWithNamespace) {
-        this.pathWithNamespace = pathWithNamespace;
-    }
-
-
+    @JsonProperty("containsReadme")
     public boolean getContainsReadMe() {
-        return containsReadMe;
-    }
-
-    public void setContainsReadMe(boolean containsReadMe) {
-        this.containsReadMe = containsReadMe;
+        return checkResults.get(Checks.README);
     }
 
     public boolean isArchived() {
         return archived;
     }
 
-    public void setArchived(boolean archived) {
-        this.archived = archived;
-    }
-
     public String getDefaultBranch() {
         return defaultBranch;
     }
 
-    public void setDefaultBranch(String defaultBranch) {
-        this.defaultBranch = defaultBranch;
+    public GitlabProject getGitLabProject() {
+        return gitLabProject;
+    }
+
+    public void setCheckResults(Map<Checks, Boolean> checkResults) {
+        this.checkResults = checkResults;
     }
 }

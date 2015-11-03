@@ -11,20 +11,10 @@ public class InspectacleServiceConfiguration extends Configuration {
     @Valid
     @NotNull
     @JsonProperty
-    private ApplicationConfig applicationConfig = new ApplicationConfig();
+    private final ApplicationConfig applicationConfig = new ApplicationConfig();
 
     public ApplicationConfig getApplicationConfig() {
         return applicationConfig;
-    }
-
-    @Valid
-    @NotNull
-    @JsonProperty
-    private JerseyClientConfiguration jerseyClient = new JerseyClientConfiguration();
-
-    @JsonProperty("jerseyClient")
-    public JerseyClientConfiguration getJerseyClientConfiguration() {
-        return jerseyClient;
     }
 
     @Valid
@@ -41,5 +31,5 @@ public class InspectacleServiceConfiguration extends Configuration {
 
     public String getURL() {
         return url;
-    }    
+    }
 }
