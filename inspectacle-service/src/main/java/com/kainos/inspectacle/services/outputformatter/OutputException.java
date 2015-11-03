@@ -1,4 +1,4 @@
-package com.kainos.inspectacle.services.OutputFormatter;
+package com.kainos.inspectacle.services.outputformatter;
 
 import java.io.IOException;
 

@@ -1,6 +1,7 @@
 package com.kainos.inspectacle.services;
 
 import com.kainos.inspectacle.models.inspectacle.ProjectSummary;
+
 import org.gitlab.api.GitlabAPI;
 import org.gitlab.api.models.GitlabProject;
 

@@ -6,11 +6,12 @@ import com.kainos.inspectacle.resources.ProjectsResource;
 import com.kainos.inspectacle.resources.StatusResource;
 import com.kainos.inspectacle.services.Checker;
 import com.kainos.inspectacle.services.CheckerImpl;
-import com.kainos.inspectacle.services.OutputFormatter.CsvOutputFormatter;
 import com.kainos.inspectacle.services.ProjectSummariserImpl;
 import com.kainos.inspectacle.services.checks.Check;
 import com.kainos.inspectacle.services.checks.Checks;
 import com.kainos.inspectacle.services.checks.ReadmeCheck;
+import com.kainos.inspectacle.services.outputformatter.CsvOutputFormatter;
+
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
