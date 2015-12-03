@@ -2,10 +2,12 @@ package com.kainos.inspectacle;
 
 import com.kainos.inspectacle.config.InspectacleServiceConfiguration;
 import com.kainos.inspectacle.health.InspectacleHealthcheck;
+import com.kainos.inspectacle.resources.MergeRequestTrackerResource;
 import com.kainos.inspectacle.resources.ProjectsResource;
 import com.kainos.inspectacle.resources.StatusResource;
 import com.kainos.inspectacle.services.Checker;
 import com.kainos.inspectacle.services.CheckerImpl;
+import com.kainos.inspectacle.services.MergeRequestSummariserImpl;
 import com.kainos.inspectacle.services.ProjectSummariserImpl;
 import com.kainos.inspectacle.services.checks.Check;
 import com.kainos.inspectacle.services.checks.Checks;
@@ -43,6 +45,7 @@ public class InspectacleApplication extends Application<InspectacleServiceConfig
         Checker checker = new CheckerImpl(checks);
 
         environment.jersey().register(new ProjectsResource(new ProjectSummariserImpl(gitLabAPI, checker), new CsvOutputFormatter()));
+        environment.jersey().register(new MergeRequestTrackerResource(new MergeRequestSummariserImpl(gitLabAPI)));
         environment.jersey().register(new StatusResource());
         environment.healthChecks().register(getName(), new InspectacleHealthcheck());
     }

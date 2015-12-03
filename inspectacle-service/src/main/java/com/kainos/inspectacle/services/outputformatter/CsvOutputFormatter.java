@@ -18,7 +18,7 @@ public class CsvOutputFormatter implements OutputFormatter {
     private static final String CSV_HEADER = "NAME,PATH,DESCRIPTION,README,ARCHIVED,DEFAULT_BRANCH";
 
     @Override
-    public StreamingOutput getOutput(List<ProjectSummary> projectSummaries) {
+    public StreamingOutput getOutput(final List<ProjectSummary> projectSummaries) {
         return new StreamingOutput() {
             @Override
             public void write(OutputStream os) throws OutputException {
