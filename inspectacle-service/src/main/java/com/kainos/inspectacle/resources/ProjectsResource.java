@@ -33,7 +33,7 @@ public class ProjectsResource {
     @Timed
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public List<ProjectSummary> get(@PathParam("id") BigInteger id) throws GitLabApiException {
+    public List<ProjectSummary> get() throws GitLabApiException {
         return projectSummariser.getGitlabProjects();
     }
 
