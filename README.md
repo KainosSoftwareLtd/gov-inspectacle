@@ -13,6 +13,8 @@
 #### Dropwizard Wrapper around Gitlab API
 This heroic application is designed to watch over your Gitlab repos, probing them for README files, and displaying whether or not they are active. Plug this into your build radiator, and expose those repos who fail to display common decency.
 
+Merge Request watcher added, currently coded to look for upvotes (:+1: comments) on open merge requests to say whether 2 independent upvotes are recieved. Again for use with a dashboard
+
 #### Configuration
 Replace the following things in the InspectacleServiceConfig.yml configuration file:
 
@@ -42,4 +44,9 @@ Defaults to running on 9420.
 ```
     GET     /projects/csv (com.kainos.inspectacle.resources.ProjectsResource)
     Returns CSV list of project summaries. So good for managing. Such Manage. So Spreadsheet. Very Jockey.
+```
+
+```
+    GET     /merge-requests/ (com.kainos.inspectacle.resources.MergeRequestTrackerResource)
+    Returns a list of open merge requests with some detail about them, and if they have recieved enough upvotes (2)
 ```
