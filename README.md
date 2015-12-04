@@ -50,3 +50,6 @@ Defaults to running on 9420.
     GET     /merge-requests/ (com.kainos.inspectacle.resources.MergeRequestTrackerResource)
     Returns a list of open merge requests with some detail about them, and if they have recieved enough upvotes (2)
 ```
+
+
+This can be paired up with [https://github.com/KainosSoftwareLtd/gov-gitlab-dashboard](https://github.com/KainosSoftwareLtd/gov-gitlab-dashboard) a dashing dashboard to display merge request status for open MRs.
