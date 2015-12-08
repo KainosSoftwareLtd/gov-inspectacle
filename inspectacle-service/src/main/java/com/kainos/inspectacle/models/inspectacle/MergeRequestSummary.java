@@ -13,8 +13,11 @@ import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MergeRequestSummary {
-    @JsonProperty("id")
-    private Integer id;
+    @JsonProperty("projectId")
+    private Integer projectId;
+
+    @JsonProperty("mergeRequestId")
+    private Integer mergeRequestId;
 
     @JsonProperty("projectName")
     private String projectName;
@@ -44,9 +47,10 @@ public class MergeRequestSummary {
         this.setFromProjectMergeRequestAndNotes(project, gitlabMergeRequest, notes);
     }
 
-    private void setFromProjectMergeRequestAndNotes(GitlabProject project, GitlabMergeRequest gitlabMergeRequest, List<GitlabNote> notes) {
-        this.id = project.getId();
-        this.projectName = project.getName();
+    private void setFromProjectMergeRequestAndNotes(GitlabProject gitlabProject, GitlabMergeRequest gitlabMergeRequest, List<GitlabNote> notes) {
+        this.projectId = gitlabProject.getId();
+        this.mergeRequestId = gitlabMergeRequest.getId();
+        this.projectName = gitlabProject.getName();
         this.description = gitlabMergeRequest.getDescription();
         this.upVotes = gitlabMergeRequest.getUpvotes();
         this.updatedAt = gitlabMergeRequest.getUpdatedAt();

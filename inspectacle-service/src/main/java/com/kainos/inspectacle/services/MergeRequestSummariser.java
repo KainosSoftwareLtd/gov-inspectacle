@@ -9,4 +9,6 @@ import java.util.List;
  */
 public interface MergeRequestSummariser {
     List<MergeRequestSummary> getMergeRequestSummaries() throws GitLabApiException;
+
+    MergeRequestSummary getMergeRequestSummary(Integer projectId, Integer mergeRequestId) throws GitLabApiException;
 }

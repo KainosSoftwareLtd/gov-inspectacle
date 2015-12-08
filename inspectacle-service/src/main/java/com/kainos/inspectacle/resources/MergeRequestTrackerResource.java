@@ -6,10 +6,7 @@ import com.kainos.inspectacle.models.inspectacle.MergeRequestSummary;
 import com.kainos.inspectacle.services.GitLabApiException;
 import com.kainos.inspectacle.services.MergeRequestSummariser;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import java.util.List;
 
 
@@ -27,5 +24,14 @@ public class MergeRequestTrackerResource {
     @Produces(MediaType.APPLICATION_JSON)
     public List<MergeRequestSummary> get() throws GitLabApiException {
         return mergeRequestSummariser.getMergeRequestSummaries();
+    }
+
+    @GET
+    @Timed
+    @Path("/project/{projectId}/mergeRequestId/{mergeRequestId}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public MergeRequestSummary get(@PathParam("projectId") Integer projectId, @PathParam("mergeRequestId") Integer mergeRequestId) throws GitLabApiException {
+        return mergeRequestSummariser.getMergeRequestSummary(projectId, mergeRequestId);
     }
 }

@@ -37,4 +37,19 @@ public class MergeRequestSummariserImpl implements MergeRequestSummariser {
         }
         return mergeRequestSummaries;
     }
+
+    @Override
+    public MergeRequestSummary getMergeRequestSummary(Integer projectId, Integer mergeRequestId) throws GitLabApiException {
+        MergeRequestSummary mergeRequestSummary;
+        try {
+            GitlabProject gitlabProject = client.getProject(projectId);
+            GitlabMergeRequest mergeRequest = client.getMergeRequest(gitlabProject,mergeRequestId);
+            List<GitlabNote> notes = client.getAllNotes(mergeRequest);
+            mergeRequestSummary = new MergeRequestSummary(gitlabProject,mergeRequest,notes);
+        } catch (IOException e) {
+            throw new GitLabApiException(e);
+        }
+
+        return mergeRequestSummary;
+    }
 }

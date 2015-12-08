@@ -8,11 +8,12 @@ import org.gitlab.api.models.GitlabProject;
 
 import java.util.Map;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIgnoreProperties(ignoreUnknown = true, value="gitLabProject")
 public class ProjectSummary {
 
     @JsonProperty("id")
     private Integer id;
+
     @JsonProperty("name")
     private String name;
 
@@ -46,7 +47,6 @@ public class ProjectSummary {
         this.pathWithNamespace = project.getPathWithNamespace();
         this.archived = project.isArchived();
         this.defaultBranch = project.getDefaultBranch();
-
         this.gitLabProject = project;
     }
 
